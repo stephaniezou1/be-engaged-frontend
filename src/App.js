@@ -7,7 +7,7 @@ import ElectionsContainer from './containers/ElectionsContainer'
 import FollowingContainer from './containers/FollowingContainer'
 import HometownContainer from './containers/HometownContainer' 
 import ProfileContainer from './containers/ProfileContainer';
-import {withRouter} from 'react-router'
+import {withRouter} from 'react-router-dom'
 import {Route, Switch, Link, NavLink} from 'react-router-dom'
 
 
@@ -17,7 +17,26 @@ class App extends React.Component {
     user: {
       id: 0,
       name: "",
-      email: ""
+      email: "",
+      line1: "",
+      city: "",
+      state: "",
+      zip_code: ""
+    },
+    token: ""
+  }
+
+  componentDidMount() {
+    if (localStorage.token) {
+
+      fetch("http://localhost:3000/users/stay_logged_in", {
+        headers: {
+          "Authorization": localStorage.token
+        }
+      })
+      .then(r => r.json())
+      .then(this.handleResponse)
+
     }
   }
 
@@ -36,7 +55,7 @@ class App extends React.Component {
   
   handleRegisterSubmit = (userInfo) => {
     console.log("Register form has been submitted")
-    fetch(`http://localhost:3000/users`, {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -44,25 +63,17 @@ class App extends React.Component {
       body: JSON.stringify(userInfo)
     })
       .then(r => r.json())
-      .then((response) => {
-        if (response.message) {
-          alert(response.message)
-        } else {
-          localStorage.token = response.token
-          this.setState(response, () => {
-            this.props.history.push("/")
-          })
-        }
-      })
+      .then(this.handleResponse)
   }
 
-  handleResponse = (resp) => {
-    if (resp.id) {
-      this.setState({
-        user: resp
-      })
-    } else {
+  handleResponse = (response) => {
+    if (resp.message) {
       alert(resp.message)
+    } else {
+      localStorage.token = resp.token
+      this.setState(resp, () => {
+        this.props.history.push("/profile")
+      })
     }
   }
 
@@ -98,7 +109,7 @@ class App extends React.Component {
           <Route path="/login" render={this.renderForm } />
           <Route path="/register" render={this.renderForm } />
 
-          <Route path="/">
+          <Route path="/home">
             <HometownContainer/>
           </Route>
           <Route path="/explore">
@@ -119,6 +130,5 @@ class App extends React.Component {
 }
 
 let RoutedApp = withRouter(App)
-
 export default RoutedApp;
 

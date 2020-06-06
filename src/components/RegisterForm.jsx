@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class RegisterForm extends Component {
 
   state = {
+    name: "",
     email: "",
     password: "",
     line1: "",
@@ -25,17 +26,19 @@ class RegisterForm extends Component {
 
   render() {
     let {formName} = this.props
-    let {email, password, line_1, city, state, zip_code} = this.state
+    let {name, email, password, line1, city, state, zip_code} = this.state
 
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>{formName}</h1>
+        <label htmlFor="name">Name:</label>
+        <input type="text" autoComplete="off" name="name" value={name} onChange={this.handleChange}/>
         <label htmlFor="email">Email:</label>
         <input type="text" autoComplete="off" name="email" value={email} onChange={this.handleChange}/>
         <label htmlFor="password">Password:</label>
         <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
-        <label htmlFor="line_1">Address:</label>
-        <input type="line_1" autoComplete="off" name="line_1" value={line_1} onChange={this.handleChange}/>
+        <label htmlFor="line1">Address:</label>
+        <input type="line1" autoComplete="off" name="line1" value={line1} onChange={this.handleChange}/>
         <label htmlFor="city">City:</label>
         <input type="city" autoComplete="off" name="city" value={city} onChange={this.handleChange}/>
         <label htmlFor="state">State:</label>
