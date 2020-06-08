@@ -6,29 +6,19 @@ import NavBar from './containers/NavBar'
 import ElectionsContainer from './containers/ElectionsContainer' 
 import FollowingContainer from './containers/FollowingContainer'
 import HometownContainer from './containers/HometownContainer' 
+import HomepageContainer from './containers/HometownContainer' 
 import ProfileContainer from './containers/ProfileContainer';
 import {withRouter} from 'react-router-dom'
-import {Route, Switch, Link, NavLink} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
+
+import {connect} from 'react-redux'
+
 
 
 class App extends React.Component {
 
-  state = {
-    user: {
-      id: 0,
-      name: "",
-      email: "",
-      line1: "",
-      city: "",
-      state: "",
-      zip_code: ""
-    },
-    token: ""
-  }
-
   componentDidMount() {
     if (localStorage.token) {
-
       fetch("http://localhost:3000/users/stay_logged_in", {
         headers: {
           "Authorization": localStorage.token
@@ -36,8 +26,12 @@ class App extends React.Component {
       })
       .then(r => r.json())
       .then(this.handleResponse)
-
     }
+    fetch("http://localhost:3000/elections")
+    .then(r => r.json())
+    .then((elections) => {
+      this.props.setAllElections(elections)
+    })
   }
 
   handleLoginSubmit = (userInfo) => {
@@ -66,15 +60,10 @@ class App extends React.Component {
       .then(this.handleResponse)
   }
 
-  handleResponse = (response) => {
-    if (resp.message) {
-      alert(resp.message)
-    } else {
-      localStorage.token = resp.token
-      this.setState(resp, () => {
-        this.props.history.push("/profile")
-      })
-    }
+  handleResponse = (resp) => {
+    localStorage.token = resp.token
+    this.props.setUserInfo(resp)
+    this.props.history.push("/profile")
   }
 
   renderForm = (routerProps) => {
@@ -92,7 +81,28 @@ class App extends React.Component {
   }
 
   renderProfile = () => {
-    
+    if (this.state.token) {
+      return <ProfileContainer user={this.state.user} token={this.state.token}/>
+    } else {
+      this.props.history.push("/login")
+    }
+  }
+
+  logout = () => {
+    console.log("This was clicked")
+      localStorage.clear("token")
+      this.setState({
+          user: {
+            id: 0,
+            name: "",
+            email: "",
+            line1: "",
+            city: "",
+            state: "",
+            zip_code: ""
+          },
+          token: ""
+      })
   }
   
   render () {
@@ -100,19 +110,21 @@ class App extends React.Component {
       <div>
       <div className="App">
         <header className="Nav-Bar">
-          <NavBar />
+          <NavBar logout={this.logout}/>
         </header>
       </div>
       <div>
+        <div>
         <Switch>
-
           <Route path="/login" render={this.renderForm } />
           <Route path="/register" render={this.renderForm } />
-
+          <Route path="/">
+            <HomepageContainer/>
+          </Route>
           <Route path="/home">
             <HometownContainer/>
           </Route>
-          <Route path="/explore">
+          <Route path="/elections">
             <ElectionsContainer/>
           </Route>
           <Route path="/following">
@@ -121,14 +133,40 @@ class App extends React.Component {
           <Route path="/profile">
             <ProfileContainer/>
           </Route>
-
         </Switch>
+        </div>
       </div>
       </div>
     );
   }
 }
 
-let RoutedApp = withRouter(App)
-export default RoutedApp;
+let MagicalComponent = withRouter(App)
+
+let setAllElections = (allElections) => {
+  return {
+    type: "SET_ALL_ELECTIONS",
+    payload: allElections
+  }
+}
+
+let setUserInfo = (resp) => {
+  return {
+    type: "SET_USER_INFO",
+    payload: resp
+  }
+}
+
+let mapDispatchToProps = {
+  setAllElections: setAllElections,
+  setUserInfo: setUserInfo
+}
+
+let mapStateToProps = (globalState) => {
+  return {
+    token: globalState.userInformation.token
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MagicalComponent)
 

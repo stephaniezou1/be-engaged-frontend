@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-export class Elections extends Component {
+export class HomepageContainer extends Component {
     render() {
         return (
             <div>
-                
+                WHAT WE STAND FOR
             </div>
         )
     }
 }
 
-export default Elections
+export default HomepageContainer

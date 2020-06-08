@@ -1,13 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Profile from '../components/Profile.jsx'
+import ProfileForm from '../components/ProfileForm.jsx'
+import {connect} from 'react-redux'
 
-export class ProfileContainer extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
+const ProfileContainer = (props) => {
+    let user = props.userInfoFromGlobalState
+    return (
+        <div>
+            <Profile key={user.id} user={user}/>
+            <ProfileForm/>
+        </div>
+    )
+}
+
+let mapStateToProps = (globalState) => {
+    return {
+        userInfoFromGlobalState: globalState.userInformation
     }
 }
 
-export default ProfileContainer
+
+export default connect(mapStateToProps)(ProfileContainer)
