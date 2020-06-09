@@ -9,4 +9,4 @@ export const addAUser = (user) => {
       type: "ADD_A_USER",
       payload: user
     }
-  }
+}

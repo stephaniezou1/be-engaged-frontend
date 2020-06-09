@@ -27,7 +27,7 @@ class NavBar extends Component {
                 <NavLink to="/elections" exact >Explore</NavLink>
               </Menu.Item>    
               <Menu.Item name = "following" active={activeItem === 'following'} onClick={this.handleItemClick}>
-                <NavLink to="/following" exact >Following</NavLink>
+                <NavLink to="/follows" exact >Following</NavLink>
               </Menu.Item> 
               <Menu.Item name = "profile" active={activeItem === 'profile'} onClick={this.handleItemClick}>
                 <NavLink to="/profile" exact >Profile</NavLink> 

@@ -12,7 +12,7 @@ const Logout = () => {
         dispatch(userLogOut())
     }
 
-    return <Button><NavLink to='/' onClick={handleLogout}>Logout</NavLink></Button>
+    return <Button> <NavLink to='/' onClick={handleLogout}>Logout</NavLink></Button>
 }
 
 export default Logout;

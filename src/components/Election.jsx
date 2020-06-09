@@ -4,13 +4,14 @@ import { Button, Card, Image } from 'semantic-ui-react'
 const Election = (props) => {
     
     const handleClick = (evt) => {
-        console.log(":(");
+        evt.preventDefault()
+        props.followAnElection(props.election)
     }
 
     let {electionId, name, electionDay, ocdDivisionId} = props.election
     return (
         <div>
-            <Card.Group>
+            <Card.Group centered>
                 <Card>
                 <Card.Content>
                     <Card.Header>{name}</Card.Header>
@@ -23,8 +24,8 @@ const Election = (props) => {
                     </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                        <div className='ui button'>
-                        <Button basic color='blue'>
+                        <div className='ui button' onClick={handleClick}>
+                        <Button basic color='blue' >
                             Follow
                         </Button>
                         </div>

@@ -5,7 +5,10 @@ import {connect} from 'react-redux'
 const ElectionsContainer = (props) => {
     console.log("HERE", props)
     let arrayOfElections = props.allElections.map((election) => {
-        return <Election key={election.id} election={election}/>
+        return <Election 
+        key={election.id} 
+        election={election} 
+        followAnElection={props.followAnElection}/>
     })
     return(
         <ul>

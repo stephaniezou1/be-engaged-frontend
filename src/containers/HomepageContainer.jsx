@@ -4,7 +4,8 @@ export class HomepageContainer extends Component {
     render() {
         return (
             <div>
-                WHAT WE STAND FOR
+                 <h1 className="center-align"> Welcome To Be Engaged </h1>
+                 <h2 className="center-align"> Track local and national elections </h2>
             </div>
         )
     }
