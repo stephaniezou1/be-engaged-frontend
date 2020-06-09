@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 
 class RegisterForm extends Component {
 
@@ -52,4 +53,16 @@ class RegisterForm extends Component {
 
 }
 
-export default RegisterForm;
+let addAUser = (user) => {
+  return {
+    type: "ADD_A_USER",
+    payload: user
+  }
+}
+
+let mapDispatchToProps = {
+  propsAddAUser: addAUser
+}
+
+
+export default connect(null, mapDispatchToProps)(RegisterForm);

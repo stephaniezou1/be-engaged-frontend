@@ -6,7 +6,7 @@ import NavBar from './containers/NavBar'
 import ElectionsContainer from './containers/ElectionsContainer' 
 import FollowingContainer from './containers/FollowingContainer'
 import HometownContainer from './containers/HometownContainer' 
-import HomepageContainer from './containers/HometownContainer' 
+import HomepageContainer from './containers/HomepageContainer' 
 import ProfileContainer from './containers/ProfileContainer';
 import {withRouter} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
@@ -91,18 +91,7 @@ class App extends React.Component {
   logout = () => {
     console.log("This was clicked")
       localStorage.clear("token")
-      this.setState({
-          user: {
-            id: 0,
-            name: "",
-            email: "",
-            line1: "",
-            city: "",
-            state: "",
-            zip_code: ""
-          },
-          token: ""
-      })
+      // FIX THIS
   }
   
   render () {
@@ -116,21 +105,21 @@ class App extends React.Component {
       <div>
         <div>
         <Switch>
-          <Route path="/login" render={this.renderForm } />
-          <Route path="/register" render={this.renderForm } />
-          <Route path="/">
+          <Route exact path="/login" render={this.renderForm } />
+          <Route exact path="/register" render={this.renderForm } />
+          <Route exact path="/">
             <HomepageContainer/>
           </Route>
-          <Route path="/home">
+          <Route exact path="/home">
             <HometownContainer/>
           </Route>
-          <Route path="/elections">
+          <Route exact path="/elections">
             <ElectionsContainer/>
           </Route>
-          <Route path="/following">
+          <Route exact path="/following">
             <FollowingContainer/>
           </Route>
-          <Route path="/profile">
+          <Route exact path="/profile">
             <ProfileContainer/>
           </Route>
         </Switch>

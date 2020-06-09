@@ -47,12 +47,21 @@ let initialUserState = {
   city: "",
   state: "",
   zip_code: "",
-  follows: [],
   token: ""
 }
 
 let userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+
+    case "ADD_A_USER":
+      let theUserToBeAdded = action.payload
+      let copyOfUsers = [...state.users, theUserToBeAdded]
+
+      return {
+        ...state,
+        users: copyOfUsers
+      }
+
     case "SET_USER_INFO":
       return {
         ...state,
@@ -63,9 +72,7 @@ let userReducer = (state = initialUserState, action) => {
         city: action.payload.user.city,
         state: action.payload.user.state,
         zip_code: action.payload.user.zip_code,
-        follows: action.payload.user.follows,
         token: action.payload.token,
-
       }
     default:
       return state
