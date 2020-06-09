@@ -88,18 +88,12 @@ class App extends React.Component {
     }
   }
 
-  logout = () => {
-    console.log("This was clicked")
-      localStorage.clear("token")
-      // FIX THIS
-  }
-  
   render () {
     return (
       <div>
       <div className="App">
         <header className="Nav-Bar">
-          <NavBar logout={this.logout}/>
+          <NavBar />
         </header>
       </div>
       <div>

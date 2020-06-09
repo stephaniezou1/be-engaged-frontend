@@ -25,14 +25,20 @@ class LoginForm extends Component {
     let {email, password} = this.state
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
+        
         <h1>{formName}</h1>
+        <Form.Field>
         <label htmlFor="email">Email:</label>
         <input type="text" autoComplete="off" name="email" value={email} onChange={this.handleChange}/>
+        </Form.Field>
+        <Form.Field>
         <label htmlFor="password">Password:</label>
         <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
-        <input type="submit" value="Submit"/>
-      </form>
+        </Form.Field>
+        <Button type="submit" value="Submit"> Log In</Button>
+
+      </Form>
     );
   }
 

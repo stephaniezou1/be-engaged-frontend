@@ -74,8 +74,16 @@ let userReducer = (state = initialUserState, action) => {
         zip_code: action.payload.user.zip_code,
         token: action.payload.token,
       }
+
+    case "LOG_OUT":
+      localStorage.clear();
+      return {
+        ...state, ...initialUserState
+      }
+      
     default:
       return state
+
   }
 }
 

@@ -1,55 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { Menu } from 'semantic-ui-react'
+import Logout from '../components/Logout.jsx'
 
-const NavBar = (props) => {
-  let {logout} = props
-  let {name, token} = props.userFromGlobalState
+class NavBar extends Component {
+
+  state = {}
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  
+  render() {
+  
+  let { token} = this.props.userFromGlobalState
+  const { activeItem } = this.state
+
   return (
     <Menu>
         { token ? 
           [
             <div>
-              <Menu.Item>
-                <a class="item"><NavLink to="/home" exact >Home</NavLink></a>      
+              <Menu.Item name = "home" active={activeItem === 'home'} onClick={this.handleItemClick}>
+                <NavLink to="/home" exact > Home </NavLink>      
               </Menu.Item> 
-              <Menu.Item> 
-                <a class="item"><NavLink to="/elections" exact >Explore</NavLink></a>
+              <Menu.Item name = "explore" active={activeItem === 'explore'} onClick={this.handleItemClick}> 
+                <NavLink to="/elections" exact >Explore</NavLink>
               </Menu.Item>    
-              <Menu.Item>
-                <a class="item"><NavLink to="/following" exact >Following</NavLink></a>
+              <Menu.Item name = "following" active={activeItem === 'following'} onClick={this.handleItemClick}>
+                <NavLink to="/following" exact >Following</NavLink>
               </Menu.Item> 
-              <Menu.Item>
-                <a class="item"><NavLink to="/profile" exact >Profile</NavLink> </a>
+              <Menu.Item name = "profile" active={activeItem === 'profile'} onClick={this.handleItemClick}>
+                <NavLink to="/profile" exact >Profile</NavLink> 
               </Menu.Item>  
-              <Menu.Item>
-                <a class="item" onClick={logout}> 
-                <NavLink to="/">Logout, {name} </NavLink></a>
+              <Menu.Item >
+                <NavLink to="/"> <Logout/> </NavLink>
               </Menu.Item>
             </div>
           ]
           :
           [
             <div>
-                <Menu.Item>
-                  <a class="item"><NavLink to="/" exact >Home</NavLink></a>
+                <Menu.Item name = "home" active={activeItem === 'home'} onClick={this.handleItemClick}>
+                  <NavLink to="/" exact > Home </NavLink>
                 </Menu.Item>
-                <Menu.Item>
-                  <a class="item"><NavLink to="/elections" exact >Explore</NavLink></a>
+                <Menu.Item name = "explore" active={activeItem === 'explore'} onClick={this.handleItemClick}>
+                  <NavLink to="/elections" exact > Explore </NavLink>
                 </Menu.Item>
-                <Menu.Item>
-                  <a class="item"><NavLink to="/register" exact >Register</NavLink></a>
+                <Menu.Item name = "register" active={activeItem === 'register'} onClick={this.handleItemClick}>
+                  <NavLink to="/register" exact > Register </NavLink>
                 </Menu.Item>
-                <Menu.Item>
-                  <a class="item"><NavLink to="/login" exact >Login</NavLink></a>
+                <Menu.Item name = "login" active={activeItem === 'login'} onClick={this.handleItemClick}>
+                <NavLink to="/login" exact > Login </NavLink>
                 </Menu.Item>
             </div>
           ]
         }
     </Menu>
-  )
-};
+    )
+  };
+}
 
 let mapStateToProps = (globalState) => {
   return {

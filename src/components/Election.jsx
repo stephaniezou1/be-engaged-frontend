@@ -1,21 +1,38 @@
 import React from 'react';
+import { Button, Card, Image } from 'semantic-ui-react'
 
 const Election = (props) => {
+    
+    const handleClick = (evt) => {
+        console.log(":(");
+    }
 
-  const handleClick = (evt) => {
-    console.log(":(");
-  }
-
-  let {electionId, name, electionDay, ocdDivisionId} = props.election
-  return(
-    <li>
-      <h3>Name: {name}</h3>
-      <h4>Election Day: {electionDay}</h4>
-      <h5>Election ID: {electionId}</h5>
-      <h5>OCD Division ID: {ocdDivisionId}</h5>
-      <button onClick={handleClick}>Follow</button>
-    </li>
-  )
+    let {electionId, name, electionDay, ocdDivisionId} = props.election
+    return (
+        <div>
+            <Card.Group>
+                <Card>
+                <Card.Content>
+                    <Card.Header>{name}</Card.Header>
+                    <Card.Meta>
+                        <span className='date'>Election ID: {electionId} 
+                        <br/> ocdDivisionId: {ocdDivisionId}</span>
+                    </Card.Meta>
+                    <Card.Description>
+                        Election Date: {electionDay}
+                    </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                        <div className='ui button'>
+                        <Button basic color='blue'>
+                            Follow
+                        </Button>
+                        </div>
+                    </Card.Content>
+                </Card>
+            </Card.Group>
+        </div>
+    )
 }
 
 export default Election;
