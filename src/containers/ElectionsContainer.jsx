@@ -8,7 +8,7 @@ const ElectionsContainer = (props) => {
         return <Election 
         key={election.id} 
         election={election} 
-        followAnElection={props.followAnElection}/>
+        />
     })
     return(
         <ul>

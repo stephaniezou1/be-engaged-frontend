@@ -37,7 +37,7 @@ let initialUserState = {
   city: "",
   state: "",
   zip_code: "",
-  follow: [],
+  follows: [],
   token: ""
 }
 
@@ -64,14 +64,8 @@ let userReducer = (state = initialUserState, action) => {
         city: action.payload.user.city,
         state: action.payload.user.state,
         zip_code: action.payload.user.zipcode,
-        follow: action.payload.user.follow,
+        follows: action.payload.user.follows,
         token: action.payload.token,
-        }
-
-    case "DISPLAY_USERS":
-        return {
-            ...state,
-            users: action.payload
         }
 
     case "LOG_OUT":
@@ -86,38 +80,11 @@ let userReducer = (state = initialUserState, action) => {
   }
 }
 
-let initialFollowState = {
-    id: 0,
-    follows: []
-}
-
-let followReducer = (state = initialFollowState, action) => {
-    switch(action.type) {
-        case "ADD_NEW_FOLLOW":
-            let theNewFollow = action.payload
-            let copyOfFollows = [...state.follows, theNewFollow]
-
-            return {
-                ...state,
-                follows: copyOfFollows
-            }
-
-        case "DISPLAY_FOLLOWS":
-            return {
-                ...state,
-                follows: action.payload
-            }
-
-            default:
-                return state
-    }
-}
-
 
 let singleObject = {
   electionInformation: electionReducer,
   userInformation : userReducer,
-  followInformation : followReducer
+  // followInformation : followReducer
 }
 
 let rootReducer = combineReducers(singleObject)

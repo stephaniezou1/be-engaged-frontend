@@ -91,21 +91,6 @@ class App extends React.Component {
     }
   }
 
-  followAnElection = (electionInfo) => {
-    fetch(`http://localhost:3000/follows`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-
-      body: JSON.stringify(electionInfo)
-    })
-    .then(response => response.json())
-    .then((newFollow) => {
-      this.props.setFollowInfo(newFollow)
-    })
-  }
-
   render () {
     return (
       <div>
@@ -126,7 +111,7 @@ class App extends React.Component {
             <HometownContainer/>
           </Route>
           <Route exact path="/elections">
-            <ElectionsContainer followAnElection={this.followAnElection}/>
+            <ElectionsContainer />
           </Route>
           <Route exact path="/follows">
             <FollowingContainer/>
@@ -158,17 +143,9 @@ let setUserInfo = (resp) => {
   }
 }
 
-let setFollowInfo = (resp) => {
-  return {
-    type: "ADD_NEW_FOLLOW",
-    payload: resp
-  }
-}
-
 let mapDispatchToProps = {
   setAllElections: setAllElections,
   setUserInfo: setUserInfo,
-  setFollowInfo: setFollowInfo,
   userLogOut: userLogOut
 }
 

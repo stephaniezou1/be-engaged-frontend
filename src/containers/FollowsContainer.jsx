@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Follow from '../components/Follow.jsx'
+import {connect} from 'react-redux'
 
 const FollowsContainer = (props) => {
 
@@ -18,8 +19,8 @@ const FollowsContainer = (props) => {
 
 let mapStateToProps = (globalState) => {
     return {
-        allFollows: globalState.followInformation.follows
+        allFollows: globalState.userInformation.follows
     }
 }
 
-export default FollowsContainer
+export default connect(mapStateToProps)(FollowsContainer)
