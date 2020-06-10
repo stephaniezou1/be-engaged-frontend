@@ -4,13 +4,13 @@ import {connect} from 'react-redux'
 
 const HometownContainer = (props) => {
 
-    let {name} = props.userInformation
+    let {name, city, state} = props.userInformation
 
     return (
         <div>
             <Header as='h2' icon textAlign='center'>
                 <Icon name='home' circular />
-                <Header.Content>Hi, {name} </Header.Content>
+                <Header.Content>Hi, {name} <br/> <br/> You are currently in {city}, {state} </Header.Content>
             </Header>
         </div>
     )
