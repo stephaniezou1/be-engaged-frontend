@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 const Election = (props) => {
     
     const handleClick = (evt) => {
-        console.log("follow clicked")
+        console.log("props token", props.token)
         evt.preventDefault()
         fetch(`http://localhost:3000/follows`, {
             method: "POST",
@@ -15,7 +15,7 @@ const Election = (props) => {
             },
             body: JSON.stringify({
                 election_id: id,
-                user_id: props.user_id
+                // user_id: props.user_id
             })
         })
         .then(response => response.json())

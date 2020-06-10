@@ -80,7 +80,7 @@ let userReducer = (state = initialUserState, action) => {
       // debugger;
       return { 
         ...state,
-        follows: state.follows.filter(follow => follow !== action.payload )
+        follows: state.follows.filter(follow => follow.id !== action.payload.id )
         }
 
     case "LOG_OUT":

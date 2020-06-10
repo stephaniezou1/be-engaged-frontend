@@ -14,7 +14,10 @@ const Follow = (props) => {
         let idToDelete = props.follow.id
         // debugger;
         fetch(`http://localhost:3000/follows/${idToDelete}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": props.token
+            }
         })
         .then(response => response.json())
         .then((response) => {
@@ -66,7 +69,8 @@ let mapStateToProps = (globalState, ownProps) => {
        return election.id === election_id
     })
     return {
-        followedElection: followedElection
+        followedElection: followedElection,
+        token: globalState.userInformation.token
     }
 }
 

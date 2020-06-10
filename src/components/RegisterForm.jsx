@@ -71,8 +71,7 @@ class RegisterForm extends Component {
 }
 
 let mapDispatchToProps = {
-  propsAddAUser: addAUser
+  // setUserInfo: setUserInfo
 }
-
 
 export default connect(null, mapDispatchToProps)(RegisterForm);
