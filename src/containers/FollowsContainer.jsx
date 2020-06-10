@@ -25,6 +25,8 @@ const FollowsContainer = (props) => {
     )
 }
 
+// remove that specific follow from array of follows
+
 let mapStateToProps = (globalState) => {
     return {
         allFollows: globalState.userInformation.follows
