@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { Menu, Header, Icon } from 'semantic-ui-react'
+import { Menu, Header, Icon, Container} from 'semantic-ui-react'
 import Logout from '../components/Logout.jsx'
 
 class NavBar extends Component {
@@ -17,8 +17,9 @@ class NavBar extends Component {
 
   return (
     <>
-    <Menu >
-      <div>
+      <Menu inverted >
+      <Container>
+        <div>
         <Header as='h2' icon textAlign='center'>
           <Icon name='lightning' circular />
           <Header.Content>Be Engaged</Header.Content>
@@ -62,6 +63,7 @@ class NavBar extends Component {
             </div>
           ]
         }
+        </Container>
     </Menu>
     </>
     )
