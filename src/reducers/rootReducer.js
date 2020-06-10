@@ -26,7 +26,6 @@ let electionReducer = (state = initialElectionState, action) => {
     default:
       return state
   }
-
 }
 
 let initialUserState = {
@@ -66,6 +65,22 @@ let userReducer = (state = initialUserState, action) => {
         zip_code: action.payload.user.zipcode,
         follows: action.payload.user.follows,
         token: action.payload.token,
+        }
+    
+    case "ADD_NEW_FOLLOW":
+      // debugger;
+      let followToBeAdded = action.payload
+      let copyOfFollows = [...state.follows, followToBeAdded]
+      return {
+        ...state,
+        follows: copyOfFollows
+      }
+
+    case "UNFOLLOW":
+      // debugger;
+      return { 
+        ...state,
+        follows: state.follows.filter(follow => follow !== action.payload )
         }
 
     case "LOG_OUT":

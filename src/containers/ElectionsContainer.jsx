@@ -1,6 +1,8 @@
 import React from 'react'
 import Election from '../components/Election.jsx'
 import {connect} from 'react-redux'
+import { Header , Icon} from 'semantic-ui-react'
+
 
 const ElectionsContainer = (props) => {
     console.log("HERE", props)
@@ -11,9 +13,15 @@ const ElectionsContainer = (props) => {
         />
     })
     return(
-        <ul>
-            {arrayOfElections}
-        </ul>
+        <div>
+        <Header as='h2' icon textAlign="center">
+            <Icon name='world' circular />
+            <Header.Content> Explore </Header.Content>
+        </Header>
+            <div class="ui four column grid container">
+                {arrayOfElections}
+            </div>
+        </div>
     )
 }
 

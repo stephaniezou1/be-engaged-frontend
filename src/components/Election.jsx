@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 const Election = (props) => {
     
     const handleClick = (evt) => {
+        console.log("follow clicked")
         evt.preventDefault()
         fetch(`http://localhost:3000/follows`, {
             method: "POST",
@@ -12,17 +13,21 @@ const Election = (props) => {
             "Authorization": props.token,
             "content-type": "application/json"
             },
-            body: JSON.stringify({election_id: id})
+            body: JSON.stringify({
+                election_id: id,
+                user_id: props.user_id
+            })
         })
         .then(response => response.json())
         .then((response) => {
             if (response.id) {
-                props.setFollowInfo(response)
+                props.addNewFollow(response)
             }
         })
     }
 
     let {id, electionId, name, electionDay, ocdDivisionId} = props.election
+
     return (
         <div>
             <Card.Group centered>
@@ -50,7 +55,7 @@ const Election = (props) => {
     )
 }
 
-let setFollowInfo = (resp) => {
+let addNewFollow = (resp) => {
     return {
       type: "ADD_NEW_FOLLOW",
       payload: resp
@@ -58,12 +63,13 @@ let setFollowInfo = (resp) => {
 }
 
 let mapDispatchToProps = {
-    setFollowInfo: setFollowInfo
+    addNewFollow: addNewFollow
 }
 
 let mapStateToProps = (globalState) => {
     return {
-        token: globalState.userInformation.token
+        token: globalState.userInformation.token,
+        user_id: globalState.userInformation.id
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Header, Icon } from 'semantic-ui-react'
 import Logout from '../components/Logout.jsx'
 
 class NavBar extends Component {
@@ -16,7 +16,14 @@ class NavBar extends Component {
   const { activeItem } = this.state
 
   return (
-    <Menu>
+    <>
+    <Menu >
+      <div>
+        <Header as='h2' icon textAlign='center'>
+          <Icon name='lightning' circular />
+          <Header.Content>Be Engaged</Header.Content>
+        </Header>
+      </div>
         { token ? 
           [
             <div>
@@ -56,6 +63,7 @@ class NavBar extends Component {
           ]
         }
     </Menu>
+    </>
     )
   };
 }

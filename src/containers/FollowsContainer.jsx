@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Follow from '../components/Follow.jsx'
 import {connect} from 'react-redux'
+import { Header, Icon } from 'semantic-ui-react'
+
 
 const FollowsContainer = (props) => {
 
@@ -12,7 +14,13 @@ const FollowsContainer = (props) => {
     })
     return (
         <div>
-            {arrayOfFollows}
+            <Header as='h2' icon textAlign="center">
+            <Icon name='plug' circular />
+            <Header.Content>Following</Header.Content>
+            </Header>
+            <div class="ui four column grid container">
+                { arrayOfFollows}
+            </div>
         </div>
     )
 }

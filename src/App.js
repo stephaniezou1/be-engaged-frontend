@@ -66,7 +66,7 @@ class App extends React.Component {
   handleResponse = (resp) => {
     localStorage.token = resp.token
     this.props.setUserInfo(resp)
-    this.props.history.push("/profile")
+    this.props.history.push("/home")
   }
 
   renderForm = (routerProps) => {

@@ -7,9 +7,10 @@ const Follow = (props) => {
 
     console.log("PROPS", props)
 
-    let { followedElection } = props
+    let { name, electionId, electionDay, ocdDivisionId } = props.followedElection
 
     let handleDelete = () => {
+        console.log("unfollow clicked")
         let idToDelete = props.follow.id
         // debugger;
         fetch(`http://localhost:3000/follows/${idToDelete}`, {
@@ -17,7 +18,7 @@ const Follow = (props) => {
         })
         .then(response => response.json())
         .then((response) => {
-           props.setFollowInfo(response) 
+           props.delete(response) 
         })
     }
     
@@ -26,20 +27,20 @@ const Follow = (props) => {
             <Card.Group centered>
                 <Card>
                 <Card.Content>
-                    <Card.Header>{followedElection.name}</Card.Header>
+                    <Card.Header>{name}</Card.Header>
                     <Card.Meta>
-                        <span className='date'> Election ID: {followedElection.electionId} 
-                        <br/> ocdDivisionId: {followedElection.ocdDivisionId}</span>
+                        <span className='date'> Election ID: {electionId} 
+                        <br/> ocdDivisionId: {ocdDivisionId}</span>
                     </Card.Meta>
                     <Card.Description>
-                        Election Date: {followedElection.electionDay}
+                        Election Date: {electionDay}
                     </Card.Description>
-                    </Card.Content>
+                </Card.Content>
                     <Card.Content extra>
                         <div className='ui button small' onClick={handleDelete} >
-                        <Button basic color='red' >
-                            Unfollow
-                        </Button>
+                            <Button basic color='red' >
+                                Unfollow
+                            </Button>
                         </div>
                     </Card.Content>
                 </Card>
