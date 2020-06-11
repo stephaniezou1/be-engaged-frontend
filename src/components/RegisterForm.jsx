@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import { addAUser } from '../actions/users.js'
 import { Button, Form } from 'semantic-ui-react'
 
 class RegisterForm extends Component {
@@ -70,8 +68,5 @@ class RegisterForm extends Component {
   }
 }
 
-let mapDispatchToProps = {
-  // setUserInfo: setUserInfo
-}
 
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default RegisterForm;

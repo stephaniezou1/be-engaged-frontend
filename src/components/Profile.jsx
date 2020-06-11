@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Card, Header, Icon} from 'semantic-ui-react'
 import ProfileForm from './ProfileForm.jsx'
 

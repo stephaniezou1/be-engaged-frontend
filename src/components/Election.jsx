@@ -1,58 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Card } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
-const Election = (props) => {
+class Election extends Component {
+
+    state = {
+        clicked: false
+    }
     
-    const handleClick = (evt) => {
-        console.log("props token", props.token)
+    handleClick = (evt) => {
+        console.log("props token", this.props.token)
         evt.preventDefault()
         fetch(`http://localhost:3000/follows`, {
             method: "POST",
             headers: {
-            "Authorization": props.token,
+            "Authorization": this.props.token,
             "content-type": "application/json"
             },
             body: JSON.stringify({
-                election_id: id,
-                // user_id: props.user_id
+                election_id: this.props.election.id,
             })
         })
         .then(response => response.json())
         .then((response) => {
             if (response.id) {
-                props.addNewFollow(response)
+                this.props.addNewFollow(response)
+
             }
         })
     }
 
-    let {id, electionId, name, electionDay, ocdDivisionId} = props.election
+    render () {
 
-    return (
-        <div>
-            <Card.Group centered>
-                <Card>
-                <Card.Content>
-                    <Card.Header>{name}</Card.Header>
-                    <Card.Meta>
-                        <span className='date'> Election ID: {electionId} 
-                        <br/> ocdDivisionId: {ocdDivisionId}</span>
-                    </Card.Meta>
-                    <Card.Description>
-                        Election Date: {electionDay}
-                    </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <div className='ui button' onClick={handleClick}>
-                        <Button basic color='blue' >
-                            Follow
-                        </Button>
-                        </div>
-                    </Card.Content>
-                </Card>
-            </Card.Group>
-        </div>
-    )
+        let {electionId, name, electionDay, ocdDivisionId} = this.props.election
+
+        return (
+            <div>
+                <Card.Group centered>
+                    <Card>
+                    <Card.Content>
+                        <Card.Header>{name}</Card.Header>
+                        <Card.Meta>
+                            <span className='date'> Election ID: {electionId} 
+                            <br/> {ocdDivisionId}</span>
+                        </Card.Meta>
+                        <Card.Description>
+                            Election Date: {electionDay}
+                        </Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                            <div className='ui button' onClick={this.handleClick} onClick= {() => this.setState({clicked: !this.state.clicked})}>
+                            <Button basic color='blue' >
+                                { this.state.clicked ? "followed" : "follow"}
+                            </Button>
+                            </div>
+                        </Card.Content>
+                    </Card>
+                </Card.Group>
+            </div>
+        )
+    }
 }
 
 let addNewFollow = (resp) => {

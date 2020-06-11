@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Follow from '../components/Follow.jsx'
 import {connect} from 'react-redux'
 import { Header, Icon } from 'semantic-ui-react'
