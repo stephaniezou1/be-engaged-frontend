@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Icon, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-
+import { updateUserInfo } from '../actions/users';
 
 class ProfileForm extends Component {
 
@@ -10,7 +10,6 @@ class ProfileForm extends Component {
         user: {
             name: "",
             email: "",
-            password: "",
             line1: "",
             city: "",
             state: "",
@@ -25,28 +24,44 @@ class ProfileForm extends Component {
         })
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        fetch(`http://localhost:3000/users`, {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json"
-              },
-              body: JSON.stringify(this.state.user)
-            })
+    handleUpdate = (userId, userInfo) => {
+        // evt.preventDefault()
+        // let userId = this.props.userInformation.id 
+        // let userInfo = this.state.user
+        fetch(`http://localhost:3000/users/${userId}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(userInfo)
+        })
+        .then(resp => resp.json())
+        .then(r => {
+          this.props.updateUserInfo(r)
+        //   this.props.history.push("/profile")
+            console.log("UPDATED HERE", r)
+        })
+    }
+
+    handleOnSubmit = (evt) => {
+        evt.preventDefault()
+        this.handleUpdate(this.props.userInformation.id, this.state.user)
     }
 
     handleChange = (e) => {
-    let {name, value} = e.target
-        this.setState({
-            [name]: value
-        })
+        console.log("HERE", this.state)
+        let {name, value} = e.target
+            this.setState({
+                user: {
+                    [name]: value
+                }
+            })
+        console.log("updated", this.state)
     }
 
     render() {
 
-        let {name, email, password, line1, city, state, zip_code} = this.props.userInformation
-
+        let {name, email, line1, city, state, zip_code} = this.props.userInformation
 
         return (
             <div>
@@ -56,34 +71,30 @@ class ProfileForm extends Component {
             </div>
             <div>
                 {this.state.editProfile ? 
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleOnSubmit}>
                 <Form.Field>
                 <label htmlFor="name">Name:</label>
-                <input type="text" autoComplete="off" name="name" value={name} onChange={this.handleChange}/>
+                <input type="text" autoComplete="off" name="name" value={this.state.user.name} onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field> 
                 <label htmlFor="email">Email:</label>
-                <input type="text" autoComplete="off" name="email" value={email} onChange={this.handleChange}/>
-                </Form.Field>
-                <Form.Field> 
-                <label htmlFor="password">Password:</label>
-                <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
+                <input type="text" autoComplete="off" name="email" value={this.state.user.email} onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field> 
                 <label htmlFor="line1">Address:</label>
-                <input type="line1" autoComplete="off" name="line1" value={line1} onChange={this.handleChange}/>
+                <input type="line1" autoComplete="off" name="line1" value={this.state.user.line1} onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field> 
                 <label htmlFor="city">City:</label>
-                <input type="city" autoComplete="off" name="city" value={city} onChange={this.handleChange}/>
+                <input type="city" autoComplete="off" name="city" value={this.state.user.city} onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field> 
                 <label htmlFor="state">State:</label>
-                <input type="state" autoComplete="off" name="state" value={state} onChange={this.handleChange}/>
+                <input type="state" autoComplete="off" name="state" value={this.state.user.state} onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field> 
                 <label htmlFor="zip_code">Zipcode:</label>
-                <input type="zip_code" autoComplete="off" name="zip_code" value={zip_code} onChange={this.handleChange}/>
+                <input type="zip_code" autoComplete="off" name="zip_code" value={this.state.user.zip_code} onChange={this.handleChange}/>
                 </Form.Field>
                 <Button type="submit" value="Submit">Submit</Button>
               </Form>
@@ -97,6 +108,7 @@ class ProfileForm extends Component {
 }
 
 let mapDispatchToProps = {
+    updateUserInfo: updateUserInfo
 }
 
 let mapStateToProps = (globalState) => {

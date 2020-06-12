@@ -15,7 +15,7 @@ import {withRouter} from 'react-router-dom'
 import {Route, Switch, NavLink} from 'react-router-dom'
 
 import {connect} from 'react-redux'
-import { userLogOut } from './actions/users';
+import { userLogOut, setUserInfo, setAllElections } from './actions/users';
 
 
 class App extends React.Component {
@@ -99,7 +99,7 @@ class App extends React.Component {
     this.setState({
         searchTerm: termFromChild
     })
-}
+  }
 
   decideWhichArrayToRender = () => {
       let {searchTerm} = this.state
@@ -143,7 +143,7 @@ class App extends React.Component {
             <FollowingContainer/>
           </Route>
           <Route exact path="/profile">
-            <ProfileContainer/>
+            <ProfileContainer />
           </Route>
         </Switch>
         </div>
@@ -153,24 +153,10 @@ class App extends React.Component {
 
 let MagicalComponent = withRouter(App)
 
-let setAllElections = (allElections) => {
-  return {
-    type: "DISPLAY_ELECTIONS",
-    payload: allElections
-  }
-}
-
-let setUserInfo = (resp) => {
-  return {
-    type: "SET_USER_INFO",
-    payload: resp
-  }
-}
-
 let mapDispatchToProps = {
   setAllElections: setAllElections,
   setUserInfo: setUserInfo,
-  userLogOut: userLogOut
+  userLogOut: userLogOut,
 }
 
 let mapStateToProps = (globalState) => {
