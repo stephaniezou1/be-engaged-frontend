@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 class LoginForm extends Component {
 
@@ -25,20 +26,29 @@ class LoginForm extends Component {
     let {email, password} = this.state
 
     return (
+    <div className="login-form">
       <Form onSubmit={this.handleSubmit}>
-        
-        <h1>{formName}</h1>
-        <Form.Field>
-        <label htmlFor="email">Email:</label>
-        <input type="text" autoComplete="off" name="email" value={email} onChange={this.handleChange}/>
-        </Form.Field>
-        <Form.Field>
-        <label htmlFor="password">Password:</label>
-        <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
-        </Form.Field>
-        <Button type="submit" value="Submit"> Log In</Button>
+        <h1>{formName}</h1> <br/>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" autoComplete="off" name="email" value={email} onChange={this.handleChange}/>
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
+        </Form.Group>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Remember Me" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Log In
+        </Button>
       </Form>
+      </div>
     );
   }
 

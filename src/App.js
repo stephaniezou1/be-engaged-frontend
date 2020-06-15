@@ -8,18 +8,22 @@ import FollowingContainer from './containers/FollowsContainer'
 import HometownContainer from './containers/HometownContainer' 
 import HomepageContainer from './containers/HomepageContainer' 
 import ProfileContainer from './containers/ProfileContainer';
+import Logout from './components/Logout.jsx'
+
+// routing
 import {withRouter} from 'react-router-dom'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, NavLink} from 'react-router-dom'
 
 import {connect} from 'react-redux'
-import { userLogOut, addAUser } from './actions/users';
+import { userLogOut, setUserInfo, setAllElections } from './actions/users';
 
 
 class App extends React.Component {
 
-  // post copy of user to the follow endpoint
-  // create a new follow id with the user ID and election ID
-
+  state = {
+    searchTerm: ""  
+  }
+  
   componentDidMount() {
     if (localStorage.token) {
       fetch("http://localhost:3000/users/stay_logged_in", {
@@ -64,9 +68,14 @@ class App extends React.Component {
   }
 
   handleResponse = (resp) => {
-    localStorage.token = resp.token
-    this.props.setUserInfo(resp)
-    this.props.history.push("/home")
+    console.log("response!", resp)
+    if (resp.user) {
+      localStorage.token = resp.token
+      this.props.setUserInfo(resp)
+      this.props.history.push("/home")
+    } else {
+      alert(resp.message)
+    }
   }
 
   renderForm = (routerProps) => {
@@ -91,16 +100,33 @@ class App extends React.Component {
     }
   }
 
+  handleSearchTerm = (termFromChild) => {
+    this.setState({
+        searchTerm: termFromChild
+    })
+  }
+
+  decideWhichArrayToRender = () => {
+      let {searchTerm} = this.state
+      let arrayToReturn = this.props.elections  
+      if (searchTerm === "") {
+          return arrayToReturn
+      } else {
+        arrayToReturn = this.props.elections.filter((election) => {
+            return election.name.toLowerCase().includes(searchTerm.toLowerCase())
+        })
+    }
+    return arrayToReturn
+  }
+
+
   render () {
+    console.log("APP STATE", this.state.searchTerm)
+    console.log("PROPS", this.props.elections)
+
     return (
-      <div>
-      <div className="App">
-        <header className="Nav-Bar">
-          <NavBar />
-        </header>
-      </div>
-      <div>
         <div>
+          <NavBar />
         <Switch>
           <Route exact path="/login" render={this.renderForm } />
           <Route exact path="/register" render={this.renderForm } />
@@ -111,42 +137,30 @@ class App extends React.Component {
             <HometownContainer/>
           </Route>
           <Route exact path="/elections">
-            <ElectionsContainer />
+            <ElectionsContainer 
+              handleSearchTerm={this.handleSearchTerm}
+              elections={this.decideWhichArrayToRender()}
+              searchTerm={this.state.searchTerm}
+            />
           </Route>
           <Route exact path="/follows">
             <FollowingContainer/>
           </Route>
           <Route exact path="/profile">
-            <ProfileContainer/>
+            <ProfileContainer />
           </Route>
         </Switch>
         </div>
-      </div>
-      </div>
     );
   }
 }
 
 let MagicalComponent = withRouter(App)
 
-let setAllElections = (allElections) => {
-  return {
-    type: "DISPLAY_ELECTIONS",
-    payload: allElections
-  }
-}
-
-let setUserInfo = (resp) => {
-  return {
-    type: "SET_USER_INFO",
-    payload: resp
-  }
-}
-
 let mapDispatchToProps = {
   setAllElections: setAllElections,
   setUserInfo: setUserInfo,
-  userLogOut: userLogOut
+  userLogOut: userLogOut,
 }
 
 let mapStateToProps = (globalState) => {

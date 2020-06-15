@@ -1,18 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Button, Card } from 'semantic-ui-react'
-
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 const Follow = (props) => {
 
-    console.log("PROPS", props)
+    console.log("FOLLOW PROPS", props)
 
     let { name, electionId, electionDay, ocdDivisionId } = props.followedElection
 
     let handleDelete = () => {
         console.log("unfollow clicked")
         let idToDelete = props.follow.id
-        // debugger;
         fetch(`http://localhost:3000/follows/${idToDelete}`, {
             method: "DELETE",
             headers: {
@@ -27,27 +26,21 @@ const Follow = (props) => {
     
     return (
         <div>
-            <Card.Group centered>
-                <Card>
-                <Card.Content>
+            <Card border="warning" style={{ width: '18rem' }}>
                     <Card.Header>{name}</Card.Header>
-                    <Card.Meta>
-                        <span className='date'> Election ID: {electionId} 
-                        <br/> ocdDivisionId: {ocdDivisionId}</span>
-                    </Card.Meta>
-                    <Card.Description>
-                        Election Date: {electionDay}
-                    </Card.Description>
-                </Card.Content>
-                    <Card.Content extra>
+                    <Card.Body>
+                        <Card.Title>{electionDay}</Card.Title>
+                    <Card.Text>
+                            Election ID: {electionId} 
+                            <br/> {ocdDivisionId}
+                    </Card.Text>
                         <div className='ui button small' onClick={handleDelete} >
                             <Button basic color='red' >
                                 Unfollow
                             </Button>
                         </div>
-                    </Card.Content>
-                </Card>
-            </Card.Group>
+                    </Card.Body>
+            </Card>
         </div>
     )
 }

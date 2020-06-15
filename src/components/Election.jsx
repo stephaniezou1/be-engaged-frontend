@@ -1,58 +1,61 @@
-import React from 'react';
-import { Button, Card } from 'semantic-ui-react'
+import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
+import Button from 'react-bootstrap/Button'
 
-const Election = (props) => {
+
+class Election extends Component {
+
+    state = {
+        clicked: false
+    }
     
-    const handleClick = (evt) => {
-        console.log("props token", props.token)
+    handleClick = (evt) => {
+        console.log("props token", this.props.token)
         evt.preventDefault()
         fetch(`http://localhost:3000/follows`, {
             method: "POST",
             headers: {
-            "Authorization": props.token,
+            "Authorization": this.props.token,
             "content-type": "application/json"
             },
             body: JSON.stringify({
-                election_id: id,
-                // user_id: props.user_id
+                election_id: this.props.election.id,
             })
         })
         .then(response => response.json())
         .then((response) => {
             if (response.id) {
-                props.addNewFollow(response)
+                this.props.addNewFollow(response)
+
             }
         })
     }
 
-    let {id, electionId, name, electionDay, ocdDivisionId} = props.election
+    render () {
 
-    return (
-        <div>
-            <Card.Group centered>
-                <Card>
-                <Card.Content>
+        let {electionId, name, electionDay, ocdDivisionId} = this.props.election
+
+        return (
+            <div>
+                <Card border="warning" style={{ width: '18rem' }}>
                     <Card.Header>{name}</Card.Header>
-                    <Card.Meta>
-                        <span className='date'> Election ID: {electionId} 
-                        <br/> ocdDivisionId: {ocdDivisionId}</span>
-                    </Card.Meta>
-                    <Card.Description>
-                        Election Date: {electionDay}
-                    </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <div className='ui button' onClick={handleClick}>
-                        <Button basic color='blue' >
-                            Follow
-                        </Button>
+                    <Card.Body>
+                        <Card.Title>{electionDay}</Card.Title>
+                    <Card.Text>
+                            Election ID: {electionId} 
+                            <br/> {ocdDivisionId}
+                    </Card.Text>
+                        <div className='ui button' onClick={this.handleClick}>
+                            <Button basic color='blue' >
+                            </Button>
                         </div>
-                    </Card.Content>
+                    </Card.Body>
                 </Card>
-            </Card.Group>
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 let addNewFollow = (resp) => {
@@ -66,7 +69,10 @@ let mapDispatchToProps = {
     addNewFollow: addNewFollow
 }
 
-let mapStateToProps = (globalState) => {
+//pull out ID frm mapstatetoprops and compare to see if it's followed, use own props to compare as a boolean to see if its been followed
+//compare array of followed matches ownProp's election Id
+
+let mapStateToProps = (globalState, ownProps) => {
     return {
         token: globalState.userInformation.token,
         user_id: globalState.userInformation.id

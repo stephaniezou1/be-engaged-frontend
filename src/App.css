@@ -1,21 +1,79 @@
-.App {
-  text-align: center;
+
+ .navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem 1rem;
 }
 
-#nav-bar {
-  float: none !important;
-  margin-left: 0 !important;
-  width: 100%;
-}
-
-* {
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 1em;
+.explore-container {
+  padding-left: 7em;
+  padding-right: 5em;
+  padding-top: 4em;
   padding-bottom: 1em;
 }
 
-.nav-bar {
-  display: inline !important;
-  float: none !important;
+.header {
+  text-align: center;
+}
+
+.search-bar {
+  text-align: right;
+  padding-left: 1em;
+}
+
+.card {
+  margin: 1em;
+}
+
+.login-form {
+  padding-left: 7em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 1em;
+}
+
+.register-form {
+  padding-left: 7em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 1em;
+}
+
+.form-control {
+  margin: 3px;
+}
+
+.hometown-container {
+  text-align: center;
+  padding-left: 7em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 1em;
+}
+
+.profile {
+  text-align: center;
+  padding-left: 7em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 1em;
+}
+
+.following-container {
+  text-align: center;
+  padding-left: 7em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 1em;
+}
+
+.profile-form {
+  text-align: center;
+  padding-left: 7em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 1em;
 }

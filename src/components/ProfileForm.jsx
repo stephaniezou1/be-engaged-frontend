@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
-import { Form, Icon, Message, Button } from 'semantic-ui-react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
-
+import { updateUserInfo } from '../actions/users';
 
 class ProfileForm extends Component {
 
     state = {
-        editProfile: false    
+        editProfile: false,
+        name: this.props.userInformation.name || "",
+        email: this.props.userInformation.email ||"",
+        line1: this.props.userInformation.line1 || "",
+        city: this.props.userInformation.city || "",
+        state: this.props.userInformation.state ||"",
+        zip_code: this.props.userInformation.zip_code || ""
     }
     
     handleToggle = () => {
@@ -16,85 +23,104 @@ class ProfileForm extends Component {
         })
     }
 
-    // handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     fetch(`http://localhost:3000/users`, {
-    //         method: "PATCH",
-    //         headers: {
-    //             "content-type": "application/json"
-    //           },
-    //           body: JSON.stringify(userInfo)
-    //         })
-    // }
-
-    handleChange = (e) => {
-    let {name, value} = e.target
-        this.setState({
-            [name]: value
+    handleUpdate = (userId, userInfo) => {
+        // evt.preventDefault()
+        // let userId = this.props.userInformation.id 
+        // let userInfo = this.state.user
+        fetch(`http://localhost:3000/users/${userId}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(userInfo)
+        })
+        .then(resp => resp.json())
+        .then(r => {
+          this.props.updateUserInfo(r)
+        //   this.props.history.push("/profile")
+            console.log("UPDATED HERE", r)
         })
     }
 
+    handleOnSubmit = (evt) => {
+        evt.preventDefault()
+        this.handleUpdate(this.props.userInformation.id, this.state)
+    }
+
+    handleChange = (e) => {
+        let {name, value} = e.target
+            this.setState({
+                [name]: value
+            })
+    }
+
     render() {
+        console.log("HERE", this.state)
+        let {name, email, line1, city, state, zip_code} = this.props.userInformation
 
         return (
-            <div></div>
+            <div className="profile-form">
+                <Button variant="primary" onClick={this.handleToggle} >Edit Profile</Button>    
+                
+                {this.state.editProfile ? 
+
+                <Form onSubmit={this.handleOnSubmit}>
+                    <Form.Row>
+                        <Form.Group controlId="formGridName">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" autoComplete="off" name="name" defaultValue={name} onChange={this.handleChange} />
+                        </Form.Group>
+                        <Form.Group controlId="formGridEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="text" autoComplete="off" name="email" defaultValue={email} onChange={this.handleChange} />
+                        </Form.Group>
+                    </Form.Row>
+
+                    <Form.Group controlId="formGridAddress1">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control placeholder="123 Main St" type="line1" autoComplete="off" name="line1" defaultValue={line1} onChange={this.handleChange} />
+                    </Form.Group>
+
+                    <Form.Row>
+
+                        <Form.Group controlId="formGridCity">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control autoComplete="off" name="city" defaultValue={city} onChange={this.handleChange} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formGridState">
+                        <Form.Label>State</Form.Label>
+                        <Form.Control placeholder= "New York" type="state" autoComplete="off" name="state" defaultValue={state} onChange={this.handleChange} >
+                        </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="formGridZip">
+                        <Form.Label>Zip</Form.Label>
+                        <Form.Control type="zip_code" autoComplete="off" name="zip_code" defaultValue={zip_code} onChange={this.handleChange}/>
+                        </Form.Group>
+
+                    </Form.Row>
+
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+                :
+                null
+                }
+            </div>
         )
-
-        // let {formName} = this.props
-        // let {name, email, password, line1, city, state, zip_code} = this.state
-
-
-        // return (
-        //     <div>
-        //     <div onClick={this.handleToggle}>
-        //         <Icon name='user' />
-        //             Edit Profile
-        //     </div>
-        //     <div>
-        //         {this.state.editProfile ? 
-        //         <Form onSubmit={this.handleSubmit}>
-        //         <h1>{formName}</h1>
-        //         <Form.Field>
-        //         <label htmlFor="name">Name:</label>
-        //         <input type="text" autoComplete="off" name="name" value={name} onChange={this.handleChange}/>
-        //         </Form.Field>
-        //         <Form.Field> 
-        //         <label htmlFor="email">Email:</label>
-        //         <input type="text" autoComplete="off" name="email" value={email} onChange={this.handleChange}/>
-        //         </Form.Field>
-        //         <Form.Field> 
-        //         <label htmlFor="password">Password:</label>
-        //         <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
-        //         </Form.Field>
-        //         <Form.Field> 
-        //         <label htmlFor="line1">Address:</label>
-        //         <input type="line1" autoComplete="off" name="line1" value={line1} onChange={this.handleChange}/>
-        //         </Form.Field>
-        //         <Form.Field> 
-        //         <label htmlFor="city">City:</label>
-        //         <input type="city" autoComplete="off" name="city" value={city} onChange={this.handleChange}/>
-        //         </Form.Field>
-        //         <Form.Field> 
-        //         <label htmlFor="state">State:</label>
-        //         <input type="state" autoComplete="off" name="state" value={state} onChange={this.handleChange}/>
-        //         </Form.Field>
-        //         <Form.Field> 
-        //         <label htmlFor="zip_code">Zipcode:</label>
-        //         <input type="zip_code" autoComplete="off" name="zip_code" value={zip_code} onChange={this.handleChange}/>
-        //         </Form.Field>
-        //         <Button type="submit" value="Submit">Submit</Button>
-        //       </Form>
-        //         :
-        //         null
-        //         }
-        //     </div>
-        //   </div>
-    //     )
     }
 }
 
 let mapDispatchToProps = {
-    // setUserInfo: setUserInfo
+    updateUserInfo: updateUserInfo
 }
 
-export default connect(null, mapDispatchToProps)(ProfileForm);
+let mapStateToProps = (globalState) => {
+    return {
+        userInformation: globalState.userInformation
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);

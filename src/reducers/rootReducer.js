@@ -55,17 +55,32 @@ let userReducer = (state = initialUserState, action) => {
 
     case "SET_USER_INFO":
         return {
-        ...state,
-        id: action.payload.user.id,
-        name: action.payload.user.name,
-        email: action.payload.user.email,
-        line1: action.payload.user.line1,
-        city: action.payload.user.city,
-        state: action.payload.user.state,
-        zip_code: action.payload.user.zipcode,
-        follows: action.payload.user.follows,
-        token: action.payload.token,
+          ...state,
+          id: action.payload.user.id,
+          name: action.payload.user.name,
+          email: action.payload.user.email,
+          line1: action.payload.user.line1,
+          city: action.payload.user.city,
+          state: action.payload.user.state,
+          zip_code: action.payload.user.zip_code,
+          follows: action.payload.user.follows,
+          token: action.payload.token,
+          hometown: action.payload.user.hometown
         }
+
+        case "UPDATE_USER": 
+          // debugger;
+          return {
+              ...state, 
+              id: action.payload.id,
+              name: action.payload.name,
+              email: action.payload.email,
+              line1: action.payload.line1,
+              city: action.payload.city,
+              state: action.payload.state,
+              zip_code: action.payload.zip_code,
+              hometown: action.payload.hometown
+          }
     
     case "ADD_NEW_FOLLOW":
       // debugger;
