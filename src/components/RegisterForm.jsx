@@ -14,7 +14,7 @@ class RegisterForm extends Component {
     zip_code: ""
   }
 
-  handleSubmit = (e) => {
+  handleChildSubmit = (e) => {
     e.preventDefault()
     this.props.handleSubmit(this.state)
   }
@@ -32,7 +32,7 @@ class RegisterForm extends Component {
 
     return (
       <div className="register-form">
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleChildSubmit}>
         <h1>{formName}</h1>    
         <br/>    
           <Form.Row>

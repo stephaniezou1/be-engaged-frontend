@@ -47,9 +47,8 @@ class Election extends Component {
                             Election ID: {electionId} 
                             <br/> {ocdDivisionId}
                     </Card.Text>
-                        <div className='ui button' onClick={this.handleClick} onClick= {() => this.setState({clicked: !this.state.clicked})}>
+                        <div className='ui button' onClick={this.handleClick}>
                             <Button basic color='blue' >
-                                { this.state.clicked ? "followed" : "follow"}
                             </Button>
                         </div>
                     </Card.Body>
@@ -70,7 +69,10 @@ let mapDispatchToProps = {
     addNewFollow: addNewFollow
 }
 
-let mapStateToProps = (globalState) => {
+//pull out ID frm mapstatetoprops and compare to see if it's followed, use own props to compare as a boolean to see if its been followed
+//compare array of followed matches ownProp's election Id
+
+let mapStateToProps = (globalState, ownProps) => {
     return {
         token: globalState.userInformation.token,
         user_id: globalState.userInformation.id

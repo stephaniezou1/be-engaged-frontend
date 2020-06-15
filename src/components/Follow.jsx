@@ -5,14 +5,13 @@ import Button from 'react-bootstrap/Button'
 
 const Follow = (props) => {
 
-    console.log("PROPS", props)
+    console.log("FOLLOW PROPS", props)
 
     let { name, electionId, electionDay, ocdDivisionId } = props.followedElection
 
     let handleDelete = () => {
         console.log("unfollow clicked")
         let idToDelete = props.follow.id
-        // debugger;
         fetch(`http://localhost:3000/follows/${idToDelete}`, {
             method: "DELETE",
             headers: {

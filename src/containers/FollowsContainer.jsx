@@ -14,13 +14,11 @@ const FollowsContainer = (props) => {
         />
     })
     return (
-        <div>
-            <Card>
-            <Card.Header as="h5">Following</Card.Header>
+        <div className="following-container" >
+            <h1 className="header">Following</h1>
                 <CardGroup>
                     { arrayOfFollows}
                 </CardGroup>        
-            </Card>
         </div>
     )
 }
