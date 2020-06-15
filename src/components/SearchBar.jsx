@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import { Search, Grid } from 'semantic-ui-react'
+import React from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import FormControl from 'react-bootstrap/FormControl'
 
 const SearchBar = (props) => {
     
@@ -9,26 +11,19 @@ const SearchBar = (props) => {
     } 
 
     return (
-        <div class="six wide column">
-            <div fallbackElement="[object Object]" class="ui search">
-            <div class="ui icon input">
-                <input 
-                    type="text" 
-                    name="searchTerm"
-                    value={props.searchTerm} 
-                    tabindex="0" 
-                    class="prompt" 
-                    autocomplete="off" 
-                    onChange={handleSearch}
-                    placeholder="Find an election"
-                />
-                <i aria-hidden="true" class="search icon"></i>
-            </div>
-            <div class="results transition">
-                <div class="message empty"><div class="header">No results found.</div></div>
-            </div>
-            </div>
-        </div>
+        <Form inline className="search-bar">
+            <FormControl 
+                type="text" 
+                name="searchTerm"
+                value={props.searchTerm} 
+                tabindex="0" 
+                class="prompt" 
+                autocomplete="off" 
+                onChange={handleSearch}
+                placeholder="Find an election" 
+                className="mr-sm-2" />
+            <Button variant="outline-primary">Search</Button>
+        </Form>
     )
 }
 

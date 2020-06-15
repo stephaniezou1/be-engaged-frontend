@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 
-export class HomepageContainer extends Component {
+class HomepageContainer extends Component {
     render() {
         return (
             <div className="carousel">
@@ -9,36 +9,34 @@ export class HomepageContainer extends Component {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="https://flic.kr/p/2jbdYyN"
+                    src="http://code.gabriellealexa.com/mutual_aid_3.png"
                     alt="First slide"
                     />
                     <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>Be Engaged</h3>
+                    <p>Explore and track local and national elections across the US</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="https://flic.kr/p/2jbhWxK"
-                    alt="Third slide"
+                    src="http://code.gabriellealexa.com/mutual_aid_3.png"
+                    alt="Second slide"
                     />
-
                     <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>Stay Engaged</h3>
+                    <p>Sign up for text notifications and never miss a deadline to vote</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="https://flic.kr/p/2jbgD35"
+                    src="http://code.gabriellealexa.com/mutual_aid_3.png"
                     alt="Third slide"
                     />
-
                     <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h3>Always Engaged</h3>
+                    <p>Helping you and your neighbors find convenient polling locations</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 </Carousel>

@@ -1,7 +1,8 @@
 import React from 'react'
 import Follow from '../components/Follow.jsx'
 import {connect} from 'react-redux'
-import { Header, Icon } from 'semantic-ui-react'
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
 
 
 const FollowsContainer = (props) => {
@@ -14,18 +15,15 @@ const FollowsContainer = (props) => {
     })
     return (
         <div>
-            <Header as='h2' icon textAlign="center">
-            <Icon name='plug' circular />
-            <Header.Content>Following</Header.Content>
-            </Header>
-            <div class="ui four column grid container">
-                { arrayOfFollows}
-            </div>
+            <Card>
+            <Card.Header as="h5">Following</Card.Header>
+                <CardGroup>
+                    { arrayOfFollows}
+                </CardGroup>        
+            </Card>
         </div>
     )
 }
-
-// remove that specific follow from array of follows
 
 let mapStateToProps = (globalState) => {
     return {

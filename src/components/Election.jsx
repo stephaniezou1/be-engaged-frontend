@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Card } from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
+import Button from 'react-bootstrap/Button'
+
 
 class Election extends Component {
 
@@ -36,27 +39,21 @@ class Election extends Component {
 
         return (
             <div>
-                <Card.Group centered>
-                    <Card>
-                    <Card.Content>
-                        <Card.Header>{name}</Card.Header>
-                        <Card.Meta>
-                            <span className='date'> Election ID: {electionId} 
-                            <br/> {ocdDivisionId}</span>
-                        </Card.Meta>
-                        <Card.Description>
-                            Election Date: {electionDay}
-                        </Card.Description>
-                        </Card.Content>
-                        <Card.Content extra>
-                            <div className='ui button' onClick={this.handleClick} onClick= {() => this.setState({clicked: !this.state.clicked})}>
+                <Card border="warning" style={{ width: '18rem' }}>
+                    <Card.Header>{name}</Card.Header>
+                    <Card.Body>
+                        <Card.Title>{electionDay}</Card.Title>
+                    <Card.Text>
+                            Election ID: {electionId} 
+                            <br/> {ocdDivisionId}
+                    </Card.Text>
+                        <div className='ui button' onClick={this.handleClick} onClick= {() => this.setState({clicked: !this.state.clicked})}>
                             <Button basic color='blue' >
                                 { this.state.clicked ? "followed" : "follow"}
                             </Button>
-                            </div>
-                        </Card.Content>
-                    </Card>
-                </Card.Group>
+                        </div>
+                    </Card.Body>
+                </Card>
             </div>
         )
     }

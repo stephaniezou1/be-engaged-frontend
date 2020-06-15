@@ -1,30 +1,27 @@
 import React from 'react'
-import { Card, Header, Icon} from 'semantic-ui-react'
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
+import Button from 'react-bootstrap/Button'
 import ProfileForm from './ProfileForm.jsx'
 
 const Profile = (props) => {
 
     let {name, email, line1, city, state, zip_code} = props.user
+
     return (
         <div>
-            <Header as='h2' icon textAlign="center">
-            <Icon name='users' circular />
-            <Header.Content>Profile</Header.Content>
-            </Header>
-            <Card centered>
-            <Card.Content>
-                <Card.Header>Name: {name}</Card.Header>
-                <Card.Meta> Email: {email} </Card.Meta>
-                <Card.Description>
-                    Address: <br/>
-                    {line1}, {city} {state} {zip_code}
-                </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                    <a>
+            <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                    <Card.Title>Name: {name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Email: {email}</Card.Subtitle>
+                    <Card.Text>
+                        Address: {line1}, {city} {state} {zip_code}
+                    </Card.Text>
+                    <div>
                     <ProfileForm />
-                    </a>
-            </Card.Content>
+                    </div>                
+                </Card.Body>
             </Card>
         </div>
     )

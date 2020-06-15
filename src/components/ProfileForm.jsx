@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Icon, Button } from 'semantic-ui-react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
 import { updateUserInfo } from '../actions/users';
 
@@ -66,38 +67,53 @@ class ProfileForm extends Component {
         return (
             <div>
             <div onClick={this.handleToggle}>
-                <Icon name='user' />
-                    Edit Profile
+                <Button variant="primary">Edit Profile</Button>    
             </div>
             <div>
-                {this.state.editProfile ? 
+            {this.state.editProfile ? 
                 <Form onSubmit={this.handleOnSubmit}>
-                <Form.Field>
-                <label htmlFor="name">Name:</label>
-                <input type="text" autoComplete="off" name="name" value={this.state.user.name} onChange={this.handleChange}/>
-                </Form.Field>
-                <Form.Field> 
-                <label htmlFor="email">Email:</label>
-                <input type="text" autoComplete="off" name="email" value={this.state.user.email} onChange={this.handleChange}/>
-                </Form.Field>
-                <Form.Field> 
-                <label htmlFor="line1">Address:</label>
-                <input type="line1" autoComplete="off" name="line1" value={this.state.user.line1} onChange={this.handleChange}/>
-                </Form.Field>
-                <Form.Field> 
-                <label htmlFor="city">City:</label>
-                <input type="city" autoComplete="off" name="city" value={this.state.user.city} onChange={this.handleChange}/>
-                </Form.Field>
-                <Form.Field> 
-                <label htmlFor="state">State:</label>
-                <input type="state" autoComplete="off" name="state" value={this.state.user.state} onChange={this.handleChange}/>
-                </Form.Field>
-                <Form.Field> 
-                <label htmlFor="zip_code">Zipcode:</label>
-                <input type="zip_code" autoComplete="off" name="zip_code" value={this.state.user.zip_code} onChange={this.handleChange}/>
-                </Form.Field>
-                <Button type="submit" value="Submit">Submit</Button>
-              </Form>
+                    <h1> Edit Profile Info </h1>        
+                    <Form.Row>
+                        <Form.Group controlId="formGridName">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" autoComplete="off" name="name" value={name} onChange={this.handleChange} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formGridEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="text" autoComplete="off" name="email" value={email} onChange={this.handleChange} />
+                        </Form.Group>
+                    </Form.Row>
+
+                    <Form.Group controlId="formGridAddress1">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control placeholder="123 Main St" type="line1" autoComplete="off" name="line1" value={line1} onChange={this.handleChange} />
+                    </Form.Group>
+
+                    <Form.Row>
+                        
+                        <Form.Group controlId="formGridCity">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control autoComplete="off" name="city" value={city} onChange={this.handleChange} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formGridState">
+                        <Form.Label>State</Form.Label>
+                        <Form.Control placeholder= "New York" type="state" autoComplete="off" name="state" value={state} onChange={this.handleChange} >
+                        </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="formGridZip">
+                        <Form.Label>Zip</Form.Label>
+                        <Form.Control type="zip_code" autoComplete="off" name="zip_code" value={zip_code} onChange={this.handleChange}/>
+                        </Form.Group>
+
+                    </Form.Row>
+
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
                 :
                 null
                 }

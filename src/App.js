@@ -8,7 +8,6 @@ import FollowingContainer from './containers/FollowsContainer'
 import HometownContainer from './containers/HometownContainer' 
 import HomepageContainer from './containers/HomepageContainer' 
 import ProfileContainer from './containers/ProfileContainer';
-import Logout from './components/Logout.jsx'
 
 // routing
 import {withRouter} from 'react-router-dom'
@@ -121,7 +120,6 @@ class App extends React.Component {
 
     return (
         <div>
-          <NavLink to="/"> <Logout/> </NavLink>
           <NavBar />
         <Switch>
           <Route exact path="/login" render={this.renderForm } />

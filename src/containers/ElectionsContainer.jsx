@@ -1,9 +1,9 @@
 import React from 'react';
 import Election from '../components/Election.jsx'
 import {connect} from 'react-redux'
-import { Header , Icon} from 'semantic-ui-react'
 import SearchBar from '../components/SearchBar.jsx'
-
+import CardGroup from 'react-bootstrap/CardGroup'
+import Container from 'react-bootstrap/Container'
 
 const ElectionsContainer = (props) => {
     
@@ -15,18 +15,17 @@ const ElectionsContainer = (props) => {
     })
 
     return(
-        <div>
-        <Header as='h2' icon textAlign="center">
-            <Icon name='world' circular />
-            <Header.Content> Explore </Header.Content>
-        </Header>
-        <SearchBar 
-            handleSearchTerm={props.handleSearchTerm}
-            searchTerm={props.searchTerm}
-        />
-            <div class="ui four column grid container">
+        <div className="explore-container" >
+            <h1 className="header">Explore</h1>
+            <SearchBar 
+                handleSearchTerm={props.handleSearchTerm}
+                searchTerm={props.searchTerm}
+            />
+            <br/>
+            
+            <CardGroup>
                 {arrayOfElections}
-            </div>
+            </CardGroup>
         </div>
     )
     
