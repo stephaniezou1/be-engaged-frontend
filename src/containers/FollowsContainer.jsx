@@ -16,6 +16,7 @@ const FollowsContainer = (props) => {
     return (
         <div className="following-container" >
             <h1 className="header">Following</h1>
+            <p align="center"> Your selection of elections to follow </p>
                 <CardGroup>
                     { arrayOfFollows}
                 </CardGroup>        

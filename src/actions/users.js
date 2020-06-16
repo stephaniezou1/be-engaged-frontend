@@ -32,3 +32,10 @@ export const setUserInfo = (resp) => {
       payload: resp
     }
   }
+
+export const addNewFollow = (resp) => {
+    return {
+      type: "ADD_NEW_FOLLOW",
+      payload: resp
+    }
+}

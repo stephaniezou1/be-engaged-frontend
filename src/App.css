@@ -6,10 +6,18 @@
   align-items: center;
   justify-content: space-between;
   padding: .5rem 1rem;
+  padding-left: 1em;
 }
 
 .explore-container {
-  padding-left: 7em;
+  padding-left: 5em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 1em;
+}
+
+.following-container {
+  padding-left: 5em;
   padding-right: 5em;
   padding-top: 4em;
   padding-bottom: 1em;
@@ -17,6 +25,7 @@
 
 .header {
   text-align: center;
+  padding-bottom: 1em;
 }
 
 .search-bar {
@@ -26,6 +35,23 @@
 
 .card {
   margin: 1em;
+  width: 12%;
+  height: 18em;
+  text-align: center;
+}
+
+.card-header {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.follow-button {
+  margin-top: auto;
 }
 
 .login-form {
@@ -62,7 +88,7 @@
   padding-bottom: 1em;
 }
 
-.following-container {
+.profile-form {
   text-align: center;
   padding-left: 7em;
   padding-right: 5em;
@@ -70,10 +96,19 @@
   padding-bottom: 1em;
 }
 
-.profile-form {
-  text-align: center;
-  padding-left: 7em;
-  padding-right: 5em;
-  padding-top: 4em;
-  padding-bottom: 1em;
+.polling-card {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+  padding-top: .50rem !important;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+}
+
+.accordian-container {
+  padding-top: 5em;
+  padding-right: 2em;
 }
