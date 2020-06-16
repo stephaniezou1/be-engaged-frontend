@@ -1,7 +1,6 @@
 import React from 'react'
 import Follow from '../components/Follow.jsx'
 import {connect} from 'react-redux'
-import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 
 

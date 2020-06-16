@@ -12,6 +12,7 @@ const HometownContainer = (props) => {
 
     return (
         <div className="hometown-container">
+            <h1> {city}, {state} </h1>
             <p align="center"> Find your nearest polling stations and track local elections </p>
             <Carousel>
                 <Carousel.Item>
@@ -22,7 +23,7 @@ const HometownContainer = (props) => {
                     />
                     <Carousel.Caption>
                     <h2>Hi, {name}</h2>
-                    <h5>You are currently in {city}, {state}</h5>
+                    <h5>Thank you for signing up to #BeEngaged </h5>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>

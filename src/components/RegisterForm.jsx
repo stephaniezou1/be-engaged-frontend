@@ -60,12 +60,12 @@ class RegisterForm extends Component {
           <Form.Row>
             <Form.Group controlId="formGridCity">
               <Form.Label>City</Form.Label>
-              <Form.Control autoComplete="off" name="city" value={city} onChange={this.handleChange} />
+              <Form.Control placeholder= "Brooklyn" autoComplete="off" name="city" value={city} onChange={this.handleChange} />
             </Form.Group>
 
             <Form.Group controlId="formGridState">
               <Form.Label>State</Form.Label>
-              <Form.Control placeholder= "New York" type="state" autoComplete="off" name="state" value={state} onChange={this.handleChange} >
+              <Form.Control placeholder= "NY" type="state" autoComplete="off" name="state" value={state} onChange={this.handleChange} >
               </Form.Control>
             </Form.Group>
 
