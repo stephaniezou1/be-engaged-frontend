@@ -34,7 +34,7 @@ const Follow = (props) => {
                             Election ID: {electionId} 
                             <br/> {ocdDivisionId}
                     </Card.Text>
-                        <div className='ui button small' onClick={handleDelete} >
+                        <div className='follow-button' onClick={handleDelete} >
                             <Button basic color='red' >
                                 Unfollow
                             </Button>
