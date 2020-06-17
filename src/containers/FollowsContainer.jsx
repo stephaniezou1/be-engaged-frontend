@@ -28,7 +28,7 @@ const FollowsContainer = (props) => {
             <p align="center"> Your selection of elections to follow </p>
             <Form className="text-form">
             <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check to get text notifications for election updates" onClick={handleClick}/>
+                <Form.Check type="checkbox" label="Check to get text notifications for election updates" onChange={handleClick}/>
             </Form.Group>
             </Form>
                 <CardGroup>
