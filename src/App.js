@@ -9,6 +9,7 @@ import HometownContainer from './containers/HometownContainer'
 import HomepageContainer from './containers/HomepageContainer' 
 import ProfileContainer from './containers/ProfileContainer';
 import Logout from './components/Logout.jsx'
+import AboutContainer from './containers/AboutContainer';
 
 // routing
 import {withRouter} from 'react-router-dom'
@@ -121,8 +122,6 @@ class App extends React.Component {
 
 
   render () {
-    console.log("APP STATE", this.state.searchTerm)
-    console.log("PROPS", this.props.elections)
 
     return (
         <div>
@@ -135,6 +134,9 @@ class App extends React.Component {
           </Route>
           <Route exact path="/home">
             <HometownContainer/>
+          </Route>
+          <Route exact path="/about">
+            <AboutContainer/>
           </Route>
           <Route exact path="/elections">
             <ElectionsContainer 

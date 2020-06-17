@@ -16,18 +16,25 @@
   padding-left: 1em;
 }
 
+.about-container {
+  padding-left: 5em;
+  padding-right: 5em;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+
 .explore-container {
   padding-left: 5em;
   padding-right: 5em;
   padding-top: 4em;
-  padding-bottom: 1em;
+  padding-bottom: 3em;
 }
 
 .following-container {
   padding-left: 5em;
   padding-right: 5em;
   padding-top: 4em;
-  padding-bottom: 1em;
+  padding-bottom: 3em;
 }
 
 .text-form {
@@ -121,4 +128,36 @@
 
 .accordian-container {
   padding-right: 2em;
+}
+
+.news-card {
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 30em;
+  margin: 1em;
+  width: 12%;
+  height: 18em;
+  text-align: center;
+}
+
+.news-card-body {
+  padding-top: 4em;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  padding-top: 1em;
+  flex-shrink: 0;
+  max-height: 20em;
+  height: 15em;
+}
+
+.news-card-title {
+  padding-top: 1.5em;
+  margin-bottom: .75rem;
+}
+
+.card-link {
+  margin-top: auto;
 }

@@ -23,7 +23,8 @@ class NavBar extends Component {
         { token ? 
             [
               <>
-                <NavLink to="/home" exact className="nav-link"> Home </NavLink>     
+                <NavLink to="/home" exact className="nav-link"> Home </NavLink> 
+                <NavLink to="/about" exact className="nav-link"> About </NavLink>    
                 <NavLink to="/elections" exact className="nav-link">Explore</NavLink>
                 <NavLink to="/follows" exact className="nav-link">Following</NavLink>
                 <NavLink to="/profile" exact className="nav-link">Profile</NavLink> 
@@ -34,6 +35,7 @@ class NavBar extends Component {
               [
                <>
                 <NavLink to="/" exact className="nav-link"> Home </NavLink> 
+                <NavLink to="/about" exact className="nav-link"> About </NavLink>
                 <NavLink to="/elections" exact className="nav-link"> Explore </NavLink>
                 <NavLink to="/register" exact className="nav-link"> Register </NavLink>
                 <NavLink to="/login" exact className="nav-link"> Login </NavLink>
