@@ -6,11 +6,8 @@ import {BrowserRouter} from 'react-router-dom'
 import rootReducer from './reducers/rootReducer.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-// Redux
 import {createStore} from 'redux'
 import { Provider } from 'react-redux'
-
 
 let storeObj = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

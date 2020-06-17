@@ -1,23 +1,46 @@
-import React from 'react'
-import Card from 'react-bootstrap/Card'
+import React, { Component } from 'react'
 import ProfileForm from './ProfileForm.jsx'
+import Button from 'react-bootstrap/Button'
 
-const Profile = (props) => {
 
-    let {name, email, line1, city, state, zip_code} = props.user
+class Profile extends Component {
+    
+    state= {
+        editProfile: false
+    }
 
-    console.log("user props", props.user)
+    handleToggle = (evt) => {
+        evt.preventDefault()
+        let {editProfile} = this.state
+        console.log("I am clicked")
+        this.setState({
+            editProfile: !editProfile
+        })
+    }
 
-    return (
-        <div className="profile">
-            <h4>Name: {name}</h4>
-                <h6 className="mb-2 text-muted">Email: {email}</h6>
-                    <h8>
-                        Address: {line1}, {city} {state} {zip_code}
-                    </h8>
-                <ProfileForm />
-        </div>
-    )
+    render () {
+
+
+        let {name, email, line1, city, state, zip_code} = this.props.user
+
+        return (
+            <div className="profile">
+                <h4>Name: {name}</h4>
+                    <h6 className="mb-2 text-muted">Email: {email}</h6>
+                        <h8>
+                            Address: {line1}, {city} {state} {zip_code}
+                        </h8>
+                        <br/><br/>
+                    <Button variant="primary" onClick={this.handleToggle} >Edit Profile</Button>    
+                    { this.state.editProfile 
+                    ? 
+                    <ProfileForm />
+                    :
+                    null
+                    }
+            </div>
+        )
+    }
 }
 
 

@@ -7,7 +7,6 @@ import { updateUserInfo } from '../actions/users';
 class ProfileForm extends Component {
 
     state = {
-        editProfile: false,
         name: this.props.userInformation.name || "",
         email: this.props.userInformation.email ||"",
         line1: this.props.userInformation.line1 || "",
@@ -15,18 +14,8 @@ class ProfileForm extends Component {
         state: this.props.userInformation.state ||"",
         zip_code: this.props.userInformation.zip_code || ""
     }
-    
-    handleToggle = () => {
-        console.log("I am clicked")
-        this.setState({
-            editProfile: !this.state.editProfile
-        })
-    }
 
     handleUpdate = (userId, userInfo) => {
-        // evt.preventDefault()
-        // let userId = this.props.userInformation.id 
-        // let userInfo = this.state.user
         fetch(`http://localhost:3000/users/${userId}`, {
           method: "PATCH",
           headers: {
@@ -60,10 +49,6 @@ class ProfileForm extends Component {
 
         return (
             <div className="profile-form">
-                <Button variant="primary" onClick={this.handleToggle} >Edit Profile</Button>    
-                
-                {this.state.editProfile ? 
-
                 <Form onSubmit={this.handleOnSubmit}>
                     <Form.Row>
                         <Form.Group controlId="formGridName">
@@ -75,39 +60,29 @@ class ProfileForm extends Component {
                         <Form.Control type="text" autoComplete="off" name="email" defaultValue={email} onChange={this.handleChange} />
                         </Form.Group>
                     </Form.Row>
-
                     <Form.Group controlId="formGridAddress1">
                         <Form.Label>Address</Form.Label>
                         <Form.Control placeholder="123 Main St" type="line1" autoComplete="off" name="line1" defaultValue={line1} onChange={this.handleChange} />
                     </Form.Group>
-
                     <Form.Row>
-
                         <Form.Group controlId="formGridCity">
                         <Form.Label>City</Form.Label>
                         <Form.Control autoComplete="off" name="city" defaultValue={city} onChange={this.handleChange} />
                         </Form.Group>
-
                         <Form.Group controlId="formGridState">
                         <Form.Label>State</Form.Label>
                         <Form.Control placeholder= "New York" type="state" autoComplete="off" name="state" defaultValue={state} onChange={this.handleChange} >
                         </Form.Control>
                         </Form.Group>
-
                         <Form.Group controlId="formGridZip">
                         <Form.Label>Zip</Form.Label>
                         <Form.Control type="zip_code" autoComplete="off" name="zip_code" defaultValue={zip_code} onChange={this.handleChange}/>
                         </Form.Group>
-
                     </Form.Row>
-
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
                 </Form>
-                :
-                null
-                }
             </div>
         )
     }

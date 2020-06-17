@@ -8,7 +8,6 @@ const ProfileContainer = (props) => {
     return (
         <div>
             <Profile key={user.id} user={user}/>
-            <ProfileForm/>
         </div>
     )
 }
