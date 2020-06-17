@@ -8,7 +8,7 @@ Coming soon...
 
 ## Tech Stack
 * React.js (Frontend)
-* Ruby on Rails API [Backend](https://github.com/stephaniezou1/be-engaged-backend)
+* Ruby on Rails API
 * PostgreSQL
 * HTML/CSS
 * Active Record
