@@ -37,7 +37,8 @@ let initialUserState = {
   state: "",
   zip_code: "",
   follows: [],
-  token: ""
+  token: "",
+  phone_number: ""
 }
 
 let userReducer = (state = initialUserState, action) => {
@@ -65,7 +66,8 @@ let userReducer = (state = initialUserState, action) => {
           zip_code: action.payload.user.zip_code,
           follows: action.payload.user.follows,
           token: action.payload.token,
-          hometown: action.payload.user.hometown
+          hometown: action.payload.user.hometown,
+          phone_number: action.payload.user.phone_number
         }
 
         case "UPDATE_USER": 
@@ -79,7 +81,8 @@ let userReducer = (state = initialUserState, action) => {
               city: action.payload.city,
               state: action.payload.state,
               zip_code: action.payload.zip_code,
-              hometown: action.payload.hometown
+              hometown: action.payload.hometown,
+              phone_number: action.payload.phone_number
           }
     
     case "ADD_NEW_FOLLOW":
