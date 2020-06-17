@@ -14,8 +14,9 @@ Coming soon...
 * Active Record
 
 ## Tools
+* [Google Civic Information API](https://developers.google.com/civic-information)
+* [Twilio API](https://www.twilio.com/)
 * [Rack CORS](https://github.com/cyu/rack-cors): description
 * [ActiveModel::Serializer](https://github.com/rails-api/active_model_serializers): description
-* [News API](https://newsapi.org)
 * [Bootstrap React CSS Library](https://react-bootstrap.netlify.app/)
 
