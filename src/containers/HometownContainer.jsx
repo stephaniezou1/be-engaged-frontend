@@ -14,6 +14,25 @@ const HometownContainer = (props) => {
         <div className="hometown-container">
             <h1> {city}, {state} </h1>
             <p align="center"> Find your nearest polling stations and track local elections </p>
+            <Accordion className="accordian-container">
+                <Card className="polling-card">
+                    <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                        Click me to see polling locations near you
+                    </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0">
+                    <Card.Body> 
+                        <h6> {hometown && JSON.parse(hometown.pollingLocations)["locationName"] } </h6>
+                        <h6> {hometown && JSON.parse(hometown.pollingLocations)["line1"] } </h6>
+                        <h6> {hometown && JSON.parse(hometown.pollingLocations)["city"] }, 
+                            {hometown && JSON.parse(hometown.pollingLocations)["state"] }  
+                            {hometown && JSON.parse(hometown.pollingLocations)["zip"] } 
+                        </h6> 
+                    </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+            </Accordion>
             <Carousel>
                 <Carousel.Item>
                     <img
@@ -37,38 +56,7 @@ const HometownContainer = (props) => {
                     <h5>You are currently in {city}, {state}</h5>
                     </Carousel.Caption>
                 </Carousel.Item>
-            </Carousel>
-
-            <Accordion defaultActiveKey="0" className="accordian-container">
-                <Card className="polling-card">
-                    <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                        Click me to see polling locations near you
-                    </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                    <Card.Body> 
-                        <h6> {hometown && JSON.parse(hometown.pollingLocations)["locationName"] } </h6>
-                        <h6> {hometown && JSON.parse(hometown.pollingLocations)["line1"] } </h6>
-                        <h6> {hometown && JSON.parse(hometown.pollingLocations)["city"] }, 
-                            {hometown && JSON.parse(hometown.pollingLocations)["state"] }  
-                            {hometown && JSON.parse(hometown.pollingLocations)["zip"] } 
-                        </h6> 
-                    </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-                <Card className="polling-card">
-                    <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                        Click me!
-                    </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
-           
+            </Carousel>  
         </div>
     )
 

@@ -1,3 +1,7 @@
+.logo {
+  max-height: 2rem;
+}
+
 .w-100 {
   max-height: 40rem!important;
 }
@@ -112,6 +116,5 @@
 }
 
 .accordian-container {
-  padding-top: 5em;
   padding-right: 2em;
 }

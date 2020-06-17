@@ -25,10 +25,11 @@ class Profile extends Component {
 
         return (
             <div className="profile">
-                <h4>Name: {name}</h4>
-                    <h6 className="mb-2 text-muted">Email: {email}</h6>
+                <h1 className="header">Profile</h1>
+                <h4>Name: {name}</h4> <br/>
+                    <h6 className="mb-2 text-muted">Email: {email}</h6><br/>
                         <h8>
-                            Address: {line1}, {city} {state} {zip_code}
+                            Address: {line1}, <br/>{city} {state} {zip_code}
                         </h8>
                         <br/><br/>
                     <Button variant="primary" onClick={this.handleToggle} >Edit Profile</Button>    

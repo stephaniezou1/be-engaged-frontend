@@ -4,7 +4,8 @@ const Logo = () => {
 
     return (
         <div>
-            <h4>Be Engaged</h4>
+            <h2>Be Engaged</h2>
+            
         </div>
     )
 }
