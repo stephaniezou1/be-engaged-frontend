@@ -7,7 +7,8 @@ Be Engaged 👀
 Coming soon...
 
 ## Tech Stack
-* React.js (Frontend)
+* React.js
+* Redux.js
 * Ruby on Rails API
 * PostgreSQL
 * HTML/CSS
