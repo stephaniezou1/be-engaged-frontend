@@ -9,7 +9,7 @@ class HomepageContainer extends Component {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="https://static.politico.com/30/e2/88407939458ca5a3f6dcad55761f/191019-aocsanders.jpg"
+                    src="https://content.fortune.com/wp-content/uploads/2019/07/squad.jpg?resize=1200,600"
                     alt="First slide"
                     />
                     <Carousel.Caption>
