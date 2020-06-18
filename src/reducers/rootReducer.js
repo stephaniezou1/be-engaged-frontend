@@ -67,12 +67,10 @@ let userReducer = (state = initialUserState, action) => {
           follows: action.payload.user.follows,
           token: action.payload.token,
           hometown: action.payload.user.hometown,
-          phone_number: action.payload.user.phone_number
         }
 
         case "UPDATE_USER": 
-          // debugger;
-          return {
+              return {
               ...state, 
               id: action.payload.id,
               name: action.payload.name,
@@ -81,12 +79,10 @@ let userReducer = (state = initialUserState, action) => {
               city: action.payload.city,
               state: action.payload.state,
               zip_code: action.payload.zip_code,
-              hometown: action.payload.hometown,
-              phone_number: action.payload.phone_number
-          }
+              hometown: action.payload.hometown
+            }
     
     case "ADD_NEW_FOLLOW":
-      // debugger;
       let followToBeAdded = action.payload
       let copyOfFollows = [...state.follows, followToBeAdded]
       return {
@@ -95,7 +91,6 @@ let userReducer = (state = initialUserState, action) => {
       }
 
     case "UNFOLLOW":
-      // debugger;
       return { 
         ...state,
         follows: state.follows.filter(follow => follow.id !== action.payload.id )
@@ -117,7 +112,6 @@ let userReducer = (state = initialUserState, action) => {
 let singleObject = {
   electionInformation: electionReducer,
   userInformation : userReducer,
-  // followInformation : followReducer
 }
 
 let rootReducer = combineReducers(singleObject)

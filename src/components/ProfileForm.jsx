@@ -26,7 +26,6 @@ class ProfileForm extends Component {
         .then(resp => resp.json())
         .then(r => {
           this.props.updateUserInfo(r)
-        //   this.props.history.push("/profile")
             console.log("UPDATED HERE", r)
         })
     }
@@ -44,7 +43,7 @@ class ProfileForm extends Component {
     }
 
     render() {
-        console.log("HERE", this.state)
+        
         let {name, email, line1, city, state, zip_code} = this.props.userInformation
 
         return (

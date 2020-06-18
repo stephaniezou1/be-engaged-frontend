@@ -29,8 +29,6 @@ const Election = (props) => {
     }
 
     let followButton = () => {
-        // [1,2,3,4] User foloowing ID => check if [1,2,3,4].includes(props.election.id)
-        // debugger;
         if (props.followedElections.includes(props.election.id)) {
             return "followed"
         } else {

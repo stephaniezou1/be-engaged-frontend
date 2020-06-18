@@ -7,7 +7,6 @@ const SearchBar = (props) => {
     
     const handleSearch = (evt) => { 
         props.handleSearchTerm(evt.target.value)
-        console.log("HERE", evt.target.value)
     } 
 
     return (

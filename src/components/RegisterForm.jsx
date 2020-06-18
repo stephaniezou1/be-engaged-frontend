@@ -11,8 +11,7 @@ class RegisterForm extends Component {
     line1: "",
     city: "",
     state: "",
-    zip_code: "",
-    phone_number: ""
+    zip_code: ""
   }
 
   handleChildSubmit = (e) => {
@@ -29,7 +28,7 @@ class RegisterForm extends Component {
 
   render() {
     let {formName} = this.props
-    let {name, email, password, line1, city, state, zip_code, phone_number} = this.state
+    let {name, email, password, line1, city, state, zip_code} = this.state
 
     return (
       <div className="register-form">
@@ -52,11 +51,6 @@ class RegisterForm extends Component {
               <Form.Control type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange} />
             </Form.Group>
 
-            <Form.Group controlId="formGridEmail">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control type="text" autoComplete="off" name="phone_number" value={phone_number} onChange={this.handleChange} />
-            </Form.Group>
-
           </Form.Row>
 
           <Form.Group controlId="formGridAddress1">
@@ -77,7 +71,7 @@ class RegisterForm extends Component {
             </Form.Group>
 
             <Form.Group controlId="formGridZip">
-              <Form.Label>Zip</Form.Label>
+              <Form.Label>Zipcode</Form.Label>
               <Form.Control type="zip_code" autoComplete="off" name="zip_code" value={zip_code} onChange={this.handleChange}/>
             </Form.Group>
           </Form.Row>
