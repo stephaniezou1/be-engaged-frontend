@@ -1,7 +1,7 @@
 Be Engaged 👀
 ========================
 
-[Link to backend](https://github.com/stephaniezou1/news_backend)
+[Link to backend](https://github.com/stephaniezou1/be-engaged-backend)
 
 ## Domain Model
 Coming soon...
