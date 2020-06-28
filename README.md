@@ -1,13 +1,14 @@
 Be Engaged 👀
 ========================
 
-[Link to backend](https://github.com/stephaniezou1/news_backend)
+[Link to backend](https://github.com/stephaniezou1/be-engaged-backend)
 
 ## Domain Model
 Coming soon...
 
 ## Tech Stack
-* React.js (Frontend)
+* React.js
+* Redux.js
 * Ruby on Rails API
 * PostgreSQL
 * HTML/CSS
