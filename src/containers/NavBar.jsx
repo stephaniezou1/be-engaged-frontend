@@ -19,7 +19,7 @@ class NavBar extends Component {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
       <Navbar.Brand><Logo/></Navbar.Brand>
-      <Nav className="ml-auto" defaultActiveKey="http://localhost:3000/">
+      <Nav className="ml-auto" defaultActiveKey="https://be-engaged-backend.herokuapp.com/">
         { token ? 
             [
               <>

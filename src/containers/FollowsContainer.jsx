@@ -14,7 +14,7 @@ const FollowsContainer = (props) => {
     })
 
     let sendText = (userId) => {
-        fetch(`http://localhost:3000/users/${userId}/send_text`)
+        fetch(`https://be-engaged-backend.herokuapp.com/users/${userId}/send_text`)
     }
 
     const handleClick = (evt) => {

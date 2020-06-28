@@ -9,7 +9,7 @@ const Election = (props) => {
     let handleClick = (evt) => {
         console.log("props token", props.token)
         evt.preventDefault()
-        fetch(`http://localhost:3000/follows`, {
+        fetch(`https://be-engaged-backend.herokuapp.com/follows`, {
             method: "POST",
             headers: {
             "Authorization": props.token,
@@ -64,12 +64,7 @@ let mapDispatchToProps = {
     addNewFollow: addNewFollow
 }
 
-//pull out ID frm mapstatetoprops and compare to see if it's followed, use own props to compare as a boolean to see if its been followed
-//compare array of followed matches ownProp's election Id
-
 let mapStateToProps = (globalState) => {
-    // let {election_id} = props.follows
-    // let {id} = ownProps.election
     let followedElections = globalState.userInformation.follows.map((follow) => {
         return follow.election_id
     })

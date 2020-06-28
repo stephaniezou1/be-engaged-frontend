@@ -16,7 +16,7 @@ class ProfileForm extends Component {
     }
 
     handleUpdate = (userId, userInfo) => {
-        fetch(`http://localhost:3000/users/${userId}`, {
+        fetch(`https://be-engaged-backend.herokuapp.com/users/${userId}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json"
@@ -43,7 +43,7 @@ class ProfileForm extends Component {
     }
 
     render() {
-        
+
         let {name, email, line1, city, state, zip_code} = this.props.userInformation
 
         return (

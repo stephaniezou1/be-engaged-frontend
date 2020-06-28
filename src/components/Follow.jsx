@@ -12,7 +12,7 @@ const Follow = (props) => {
     let handleDelete = () => {
         console.log("unfollow clicked")
         let idToDelete = props.follow.id
-        fetch(`http://localhost:3000/follows/${idToDelete}`, {
+        fetch(`https://be-engaged-backend.herokuapp.com/follows/${idToDelete}`, {
             method: "DELETE",
             headers: {
                 "Authorization": props.token

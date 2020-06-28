@@ -11,7 +11,6 @@ import ProfileContainer from './containers/ProfileContainer';
 import Logout from './components/Logout.jsx'
 import AboutContainer from './containers/AboutContainer';
 
-// routing
 import {withRouter} from 'react-router-dom'
 import {Route, Switch, NavLink} from 'react-router-dom'
 
@@ -27,7 +26,7 @@ class App extends React.Component {
   
   componentDidMount() {
     if (localStorage.token) {
-      fetch("http://localhost:3000/users/stay_logged_in", {
+      fetch("https://be-engaged-backend.herokuapp.com/users/stay_logged_in", {
         headers: {
           "Authorization": localStorage.token
         }
@@ -35,7 +34,7 @@ class App extends React.Component {
       .then(r => r.json())
       .then(this.handleResponse)
     }
-    fetch("http://localhost:3000/elections")
+    fetch("https://be-engaged-backend.herokuapp.com/elections")
     .then(r => r.json())
     .then((elections) => {
       this.props.setAllElections(elections)
@@ -44,7 +43,7 @@ class App extends React.Component {
 
   handleLoginSubmit = (userInfo) => {
     console.log("Login form has been submitted")
-    fetch(`http://localhost:3000/users/login`, {
+    fetch(`https://be-engaged-backend.herokuapp.com/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -57,7 +56,7 @@ class App extends React.Component {
   
   handleRegisterSubmit = (userInfo) => {
     console.log("Register form has been submitted")
-    fetch("http://localhost:3000/users", {
+    fetch("https://be-engaged-backend.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json"
