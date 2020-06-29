@@ -2,6 +2,7 @@ Be Engaged 👀
 ========================
 
 [Link to backend](https://github.com/stephaniezou1/be-engaged-backend)
+[Deployed here](https://be-engaged.herokuapp.com/)
 
 ## Domain Model
 Coming soon...
